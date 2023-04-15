@@ -1,5 +1,5 @@
 
-from std_msgs.msg import String
+
 import RPi.GPIO as GPIO
 from time import sleep
 # Set the GPIO modes
@@ -83,28 +83,7 @@ def Right():
     pwmMotorBBackwards.ChangeDutyCycle(DutyCycle)
 
 
-# Message handler
-def CommandCallback(commandMessage):
-    command = commandMessage.data
-    Enable()
-    if command == 'forwards':
-        print('Moving forwards')
-        Forwards()
-    elif command == 'backwards':
-        print('Moving backwards')
-        Backwards()
-    elif command == 'left':
-        print('Turning left')
-        Left()
-    elif command == 'right':
-        print('Turning right')
-        Right()
-    elif command == 'stop':
-        print('Stopping')
-        StopMotors()
-    else:
-        print('Unknown command, stopping instead')
-        StopMotors()
+
 
 
 
