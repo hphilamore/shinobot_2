@@ -90,40 +90,40 @@ def getkey():
 print('IRM Test Start ...')
 stop()
 try:
-    forward()
-    time.sleep(3)
-    stop()
-#	while True:
-#		key = getkey()
-#		if(key != None):
-#			print("Get the key: 0x%02x" %key)
-#			if key == 0x18:
-#				forward()
-#				print("forward")
-#			if key == 0x08:
-#				left()
-#				print("left")
-#			if key == 0x1c:
-#				stop()
-#				print("stop")
-#			if key == 0x5a:
-#				right()
-#				print("right")
-#			if key == 0x52:
-#				reverse()
-#				print("reverse")
-#			if key == 0x15:
-#				if(PWM + 10 < 101):
-#					PWM = PWM + 10
-#					p1.ChangeDutyCycle(PWM)
-#					p2.ChangeDutyCycle(PWM)
-#					print(PWM)
-#			if key == 0x07:
-#				if(PWM - 10 > -1):
-#					PWM = PWM - 10
-#					p1.ChangeDutyCycle(PWM)
-#					p2.ChangeDutyCycle(PWM)
-#					print(PWM)
+#    forward()
+#    time.sleep(3)
+#    stop()
+	while True:
+		key = getkey()
+		if(key != None):
+			print("Get the key: 0x%02x" %key)
+			if key == 0x18:
+				forward()
+				print("forward")
+			if key == 0x08:
+				left()
+				print("left")
+			if key == 0x1c:
+				stop()
+				print("stop")
+			if key == 0x5a:
+				right()
+				print("right")
+			if key == 0x52:
+				reverse()
+				print("reverse")
+			if key == 0x15:
+				if(PWM + 10 < 101):
+					PWM = PWM + 10
+					p1.ChangeDutyCycle(PWM)
+					p2.ChangeDutyCycle(PWM)
+					print(PWM)
+			if key == 0x07:
+				if(PWM - 10 > -1):
+					PWM = PWM - 10
+					p1.ChangeDutyCycle(PWM)
+					p2.ChangeDutyCycle(PWM)
+					print(PWM)
 except KeyboardInterrupt:
 	GPIO.cleanup();
 
