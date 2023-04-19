@@ -7,19 +7,19 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
 # Set variables for the GPIO motor pins
-pinMotorAForwards = 10
-pinMotorABackwards = 9
-pinMotorBForwards = 8
-pinMotorBBackwards = 7
-EnableA = 21
-EnableB = 20
-pinTrigger = 17 
-pinEcho = 18
+pinMotorAForwards = 6#10
+pinMotorABackwards = 13#9
+pinMotorBForwards = 20#8
+pinMotorBBackwards = 21#7
+EnableA = 12 #21
+EnableB = 26 #20
+#pinTrigger = 17
+#pinEcho = 18
 
 # How many times to turn the pin on and off each second
 Frequency = 20
 # How long the pin stays on each cycle, as a percent (here, it's 30%)
-DutyCycle = 90
+DutyCycle = 30
 # Setting the duty cycle to 0 means the motors will not turn
 Stop = 0
 
