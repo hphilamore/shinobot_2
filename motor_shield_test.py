@@ -19,7 +19,7 @@ EnableB = 26 #20
 # How many times to turn the pin on and off each second
 Frequency = 20
 # How long the pin stays on each cycle, as a percent (here, it's 30%)
-DutyCycle = 30
+DutyCycle = 90
 # Setting the duty cycle to 0 means the motors will not turn
 Stop = 0
 
