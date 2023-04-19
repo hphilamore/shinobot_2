@@ -43,9 +43,9 @@ pwmMotorABackwards.start(Stop)
 pwmMotorBForwards.start(Stop)
 pwmMotorBBackwards.start(Stop)
 
-def Enable():  
- GPIO.output(EnableA, 1)
- GPIO.output(EnableB, 1)
+def Enable(state):
+ GPIO.output(EnableA, state)
+ GPIO.output(EnableB, state)
 
 # Turn all motors off
 def StopMotors():
@@ -86,8 +86,9 @@ def Right():
 
 
 
-Enable()
+Enable(1)
 Forwards()
 sleep(3)
 StopMotors()
+Enable(0)
 GPIO.cleanup()
