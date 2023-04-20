@@ -19,13 +19,16 @@ import cv2
 import mediapipe
 import socket
 import time
-from screeninfo import get_monitors # windows only
+
+OS = 'mac' #'windows'
+if OS == 'windows': 
+    from screeninfo import get_monitors # windows only
  
 drawingModule = mediapipe.solutions.drawing_utils
 handsModule = mediapipe.solutions.hands
 
-HOST = "192.168.89.194"  # The raspberry pi's hostname or IP address
-PORT = 65443            # The port used by the server
+HOST = "192.168.167.253"  # The raspberry pi's hostname or IP address
+PORT = 65442            # The port used by the server
 
 flag_no_hand = False 
 
@@ -126,29 +129,29 @@ while(True):
             
             #------------------------------------------------------------------------------
             # To make output window full screen:
-	        for monitor in get_monitors():
-	         	screen_h = monitor.height
-	         	screen_w = monitor.width
+	        # for monitor in get_monitors():
+	        #  	screen_h = monitor.height
+	        #  	screen_w = monitor.width
 	        
-	        frame_h, frame_w, _ = frame.shape
+	        # frame_h, frame_w, _ = frame.shape
 
-	        scaleWidth = float(screen_w)/float(frame_w)
-	        scaleHeight = float(screen_h)/float(frame_h)
+	        # scaleWidth = float(screen_w)/float(frame_w)
+	        # scaleHeight = float(screen_h)/float(frame_h)
 
-	        if scaleHeight>scaleWidth:
-	        	imgScale = scaleWidth
-	        else:
-	        	imgScale = scaleHeight
+	        # if scaleHeight>scaleWidth:
+	        # 	imgScale = scaleWidth
+	        # else:
+	        # 	imgScale = scaleHeight
 
-	        newX,newY = frame_w*imgScale, frame_h*imgScale
+	        # newX,newY = frame_w*imgScale, frame_h*imgScale
 
-	        # cv2.namedWindow('image', cv2.WND_PROP_FULLSCREEN)
-	        # cv2.setWindowProperty('image', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
-	        # frame = cv2.resize(frame,(int(newX),int(newY)))
-	        # cv2.imshow('image', frame)
+	        # # cv2.namedWindow('image', cv2.WND_PROP_FULLSCREEN)
+	        # # cv2.setWindowProperty('image', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+	        # # frame = cv2.resize(frame,(int(newX),int(newY)))
+	        # # cv2.imshow('image', frame)
 
-	        cv2.namedWindow('image',cv2.WINDOW_NORMAL) # Implicitly create the window
-	        cv2.resizeWindow('image', int(newX),int(newY))         # Resize the window
+	        # cv2.namedWindow('image',cv2.WINDOW_NORMAL) # Implicitly create the window
+	        # cv2.resizeWindow('image', int(newX),int(newY))         # Resize the window
 
 	        #------------------------------------------------------------------------------
 

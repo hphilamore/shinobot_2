@@ -80,7 +80,7 @@ def Backwards():
     PWM_Motor2A.ChangeDutyCycle(Stop)
     PWM_Motor2B.ChangeDutyCycle(DutyCycle)
 
-def Spin_Left():
+def Spin_Right():
     """
     Turn left
     """
@@ -89,7 +89,7 @@ def Spin_Left():
     PWM_Motor2A.ChangeDutyCycle(DutyCycle)
     PWM_Motor2B.ChangeDutyCycle(Stop)
 
-def Spin_Right():
+def Spin_Left():
     """
     Turn Right
     """
@@ -98,7 +98,7 @@ def Spin_Right():
     PWM_Motor2A.ChangeDutyCycle(Stop)
     PWM_Motor2B.ChangeDutyCycle(DutyCycle)
 
-def Turn_Left():
+def Turn_Right():
     """
     Turn left
     """
@@ -107,7 +107,7 @@ def Turn_Left():
     PWM_Motor2A.ChangeDutyCycle(DutyCycle)
     PWM_Motor2B.ChangeDutyCycle(Stop)
 
-def Turn_Right():
+def Turn_Left():
     """
     Turn Right
     """
@@ -120,14 +120,14 @@ def Turn_Right():
 
 Enable(1)
 
-Forwards()
-sleep(3)
-Backwards()
-sleep(3)
-# Spin_Left()
+# Forwards()
 # sleep(3)
-# Spin_Right()
+# Backwards()
 # sleep(3)
+Spin_Left()
+sleep(3)
+Spin_Right()
+sleep(3)
 # Turn_Left()
 # sleep(3)
 # Turn_Right()
