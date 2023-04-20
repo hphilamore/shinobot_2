@@ -35,25 +35,48 @@ flag_no_hand = False
 # Setup web cam ready for video capture 
 capture = cv2.VideoCapture(0)
 
-def pos_to_command(x, z):
-    if 0.0 < x < 1.0:        # Check hand detected in frame
-        if z <= -0.15:       # Stop if too close
-            out = 'stop'          
+# def pos_to_command(x, z):
+#     if 0.0 < x < 1.0:        # Check hand detected in frame
+#         if z <= -0.15:       # Stop if too close
+#             out = 'stop'          
 
-        elif x < 0.4:        # Turn left
-            out = 'right'
+#         elif x < 0.4:        # Turn left
+#             out = 'right'
+             
+#         elif x > 0.6:        # Turn right 
+#             out = 'left'
+            
+#         else:                # Go forwards
+#             out = 'forward'
+
+#     else:
+#         out = 'none'
+
+#     return out
+
+def pos_to_command(x, y, z):
+    print(x, y)
+    if 0.0 < x < 1.0:        # Check hand detected in frame
+        # if z <= -0.15:       # Stop if too close
+        #     out = 'stop'          
+
+        if x < 0.4:        # Turn left
+            out = 'left'
              
         elif x > 0.6:        # Turn right 
-            out = 'left'
+            out = 'right'
             
         else:                # Go forwards
-            out = 'forward'
+            if y >= 0.5:
+                out = 'backward'
+            else:
+                out = 'forward'
 
     else:
         out = 'none'
 
     return out
- 
+  
 
 while(True):
 
@@ -85,21 +108,26 @@ while(True):
                 print(f'HAND NUMBER: {hand_no+1}')
                 print('-----------------------')
  
+                # Create list to store 3D coordinates of each node on the hand
                 x_ = []
+                y_ = []
                 z_ = []
+
 
                 for i in range(20):
                     x_.append(hand_landmarks.landmark[handsModule.HandLandmark(i).value].x)
+                    y_.append(hand_landmarks.landmark[handsModule.HandLandmark(i).value].y)
                     z_.append(hand_landmarks.landmark[handsModule.HandLandmark(i).value].z)
                         
                 # Find mean value of x and z coordinate of nodes 
-                x = sum(x_)/len(x_)                
+                x = sum(x_)/len(x_)
+                y = sum(y_)/len(y_)                
                 z = sum(z_)/len(z_)
 
                 print(x, z)
 
                 # Choose a command to send to the raspberry pi robot 
-                command = pos_to_command(x, z)
+                command = pos_to_command(x, y, z)
                 print(command)
 
         else:

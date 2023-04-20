@@ -50,7 +50,7 @@ EnableB = 26
 Frequency = 20
 
 # How long the pin stays on each cycle, as a percent 
-DutyCycle = 80
+DutyCycle = 20
 
 # Setting the duty cycle to 0 means the motors will not turn
 Stop = 0
@@ -239,6 +239,11 @@ while(1):
 
             elif msg == 'forward':
                 Forwards()
+                # motor1.forward(0.5)
+                # motor2.forward(0.5)
+
+            elif msg == 'backward':
+                Backwards()
                 # motor1.forward(0.5)
                 # motor2.forward(0.5)
 
