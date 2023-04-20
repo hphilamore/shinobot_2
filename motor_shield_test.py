@@ -66,8 +66,8 @@ def Forwards():
     """
     Turn both motors forwards
     """
-    PWM_Motor1A.ChangeDutyCycle(DutyCycle)
-    PWM_Motor1B.ChangeDutyCycle(Stop)
+    PWM_Motor1A.ChangeDutyCycle(Stop)
+    PWM_Motor1B.ChangeDutyCycle(DutyCycle)
     PWM_Motor2A.ChangeDutyCycle(DutyCycle)
     PWM_Motor2B.ChangeDutyCycle(Stop)
 
@@ -75,34 +75,64 @@ def Backwards():
     """
     Turn both motors backwards
     """
-    PWM_Motor1A.ChangeDutyCycle(Stop)
-    PWM_Motor1B.ChangeDutyCycle(DutyCycle)
-    PWM_Motor2A.ChangeDutyCycle(Stop)
-    PWM_Motor2B.ChangeDutyCycle(DutyCycle)
-
-def Left():
-    """
-    Turn left
-    """
-    PWM_Motor1A.ChangeDutyCycle(Stop)
-    PWM_Motor1B.ChangeDutyCycle(DutyCycle)
-    PWM_Motor2A.ChangeDutyCycle(DutyCycle)
-    PWM_Motor2B.ChangeDutyCycle(Stop)
-
-def Right():
-    """
-    Turn Right
-    """
     PWM_Motor1A.ChangeDutyCycle(DutyCycle)
     PWM_Motor1B.ChangeDutyCycle(Stop)
     PWM_Motor2A.ChangeDutyCycle(Stop)
     PWM_Motor2B.ChangeDutyCycle(DutyCycle)
 
+def Spin_Left():
+    """
+    Turn left
+    """
+    PWM_Motor1A.ChangeDutyCycle(DutyCycle)
+    PWM_Motor1B.ChangeDutyCycle(Stop)
+    PWM_Motor2A.ChangeDutyCycle(DutyCycle)
+    PWM_Motor2B.ChangeDutyCycle(Stop)
+
+def Spin_Right():
+    """
+    Turn Right
+    """
+    PWM_Motor1A.ChangeDutyCycle(Stop)
+    PWM_Motor1B.ChangeDutyCycle(DutyCycle)
+    PWM_Motor2A.ChangeDutyCycle(Stop)
+    PWM_Motor2B.ChangeDutyCycle(DutyCycle)
+
+def Turn_Left():
+    """
+    Turn left
+    """
+    PWM_Motor1A.ChangeDutyCycle(Stop)
+    PWM_Motor1B.ChangeDutyCycle(DutyCycle/3)
+    PWM_Motor2A.ChangeDutyCycle(DutyCycle)
+    PWM_Motor2B.ChangeDutyCycle(Stop)
+
+def Turn_Right():
+    """
+    Turn Right
+    """
+    PWM_Motor1A.ChangeDutyCycle(Stop)
+    PWM_Motor1B.ChangeDutyCycle(DutyCycle)
+    PWM_Motor2A.ChangeDutyCycle(DutyCycle/3)
+    PWM_Motor2B.ChangeDutyCycle(Stop)
+
 
 
 Enable(1)
+
 Forwards()
 sleep(3)
+Backwards()
+sleep(3)
+# Spin_Left()
+# sleep(3)
+# Spin_Right()
+# sleep(3)
+# Turn_Left()
+# sleep(3)
+# Turn_Right()
+# sleep(3)
+
 StopMotors()
 Enable(0)
 GPIO.cleanup()
