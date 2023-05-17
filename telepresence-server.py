@@ -221,31 +221,24 @@ while(1):
 
             if msg == 'stop':
                 StopMotors()
-                # motor1.stop() 
-                # motor2.stop()
-                # motor3.stop() 
-                # motor4.stop()
+
 
             elif msg == 'left':
                 Spin_Left()
-                # motor1.stop()
-                # motor2.forward(0.5)
+
 
             elif msg == 'right':
                 Spin_Right()
-                # motor1.forward(0.5)
-                # motor2.stop()
+
                 
 
             elif msg == 'forward':
                 Forwards()
-                # motor1.forward(0.5)
-                # motor2.forward(0.5)
+
 
             elif msg == 'backward':
                 Backwards()
-                # motor1.forward(0.5)
-                # motor2.forward(0.5)
+
 
             #conn.sendall(data)
     

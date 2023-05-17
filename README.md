@@ -2,7 +2,7 @@
 # Programs to run on computer *(Motion tracking of hands in a video feed)*
 
 ## Computer set up and installation:
-- Clone git repository: https://github.com/hphilamore/mediapipe_hands_vid_send
+- Clone this git repository
 - Create virtual environment (https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/) inside cloned repository: Run:[`python3 -m venv env`] (Mac/Linux), [`py -m venv env`] (Windows) 
 - Add virtual environment to .gitignore file. Run:[`nano .gitignore`] and add line [`/env`]
 - Activate virtual environment: Run:[`source env/bin/activate`] (Mac/Linux) [`.\env\Scripts\activate`] (Windows) 
@@ -10,22 +10,26 @@
 
 ## Hand tracking test programs
 <br>**A program to demonstrate hand tracking on video feed from default web-cam**
-- Activate virtual environment: Run:[`source env/bin/activate`]
 - Run:[`python3 hands_tracking_demo.py`]
  
 <br>**A program to demonstrate hand tracking on video feed from default web-cam and outputs coordinates of hand nodes**
-- Activate virtual environment: Run:[`source env/bin/activate`]
 - Run:[`python3 hands_tracking_demo_coordinates.py`]
 
 ## Teleoperation programs
 <br>**A program to track hand position in image from web-cam and send command to raspberry pi robot over wifi.**
-- Activate virtual environment: Run:[`source env/bin/activate`]
 - Run:[`python3 telepresence-client.py`]
 
 <br>**A program to track hand position in image from web-cam OR desktop window. <br> Chooses a command based on hand position.<br> Sends command to raspberry pi robot over wifi.**
-- Activate virtual environment: Run:[`source env/bin/activate`]
 - Run `telepresence-server.py` on robot to listen for client. 
 - Run:[`python3 telepresence-client-win.py`]
+- Note: Variable `HOST` should have same value equal to raspberry pi IP address
+- Note: Variable `PORT` should have same value as in [`telepresence-server.py`]
+
+<br>**A program to track arrow keys pressed on computer keyboard. 
+<br> Chooses a command based on key pressed.
+<br> Sends command to raspberry pi robot over wifi.**
+- Run `telepresence-server.py` on robot to listen for client. 
+- Run:[`python3 telepresence-client-keys.py`]
 - Note: Variable `HOST` should have same value equal to raspberry pi IP address
 - Note: Variable `PORT` should have same value as in [`telepresence-server.py`] 
 
