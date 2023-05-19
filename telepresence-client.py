@@ -31,7 +31,7 @@ import curses
 #-------------------------------------------------------------------------------
 """ SETUP """
 
-HOST = "192.168.0.100"  # The raspberry pi's hostname or IP address
+HOST = "192.168.146.223"  # The raspberry pi's hostname or IP address
 PORT = 65443            # The port used by the server
 
 # Take video stream from 'camera' or 'window' or 'keys'
@@ -51,8 +51,17 @@ win_name = 'Photo Booth:Photo Booth'
 # Choose OC as macOS or windowsOS 
 OS = 'macOS' #'windowsOS'
 
-# Video appears full scree if True
+# Set as True if the image to run hand tracking on is full screeen 
+grab_full_screen_image = False
+
+# Output video appears full screen if True
 make_output_window_fullscreen = True
+
+# Send command to raspberry pi
+send_command = False
+
+# Number of hands to track
+n_hands = 1
 
 
 #-------------------------------------------------------------------------------
@@ -63,6 +72,8 @@ if OS == 'windowsOS':
 drawingModule = mediapipe.solutions.drawing_utils
 handsModule = mediapipe.solutions.hands
 
+# A flag to indicate when no hand is deteced so that a timer can be set to 
+# check of the hand is really gone or if detection has failed momentarily 
 flag_no_hand = False 
 
 # Setup web cam ready for video capture 
@@ -73,7 +84,6 @@ def pos_to_command(x, y, z):
     """
     Translates position of hand detected to command sent to robot
     """
-    print(x, y)
     if 0.0 < x < 1.0:        # Check hand detected in frame
         # if z <= -0.15:       # Stop if too close
         #     out = 'stop'          
@@ -171,7 +181,7 @@ while(True):
     with handsModule.Hands(static_image_mode=False, 
                        min_detection_confidence=0.7, 
                        min_tracking_confidence=0.7, 
-                       max_num_hands=1) as hands:
+                       max_num_hands=n_hands) as hands:
 
 
         # with mss() as sct:
@@ -195,10 +205,9 @@ while(True):
                     # Grab current image    
                     frame = np.array(sct.grab(window))
 
-                    # ------------------------------------------------
-                    # Uncomment this line if full screen image required
-                    # frame = np.array(ImageGrab.grab())
-                    # ------------------------------------------------  
+                    # If full screen image grab required
+                    if grab_full_screen_image: 
+                        frame = np.array(ImageGrab.grab()) 
 
                     frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
 
@@ -270,11 +279,12 @@ while(True):
                         command = 'stop'  
 
 
-        # Send command to server socket on raspberry pi
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            # s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) # Allow reuse of address
-            s.connect((HOST, PORT))
-            s.sendall(command.encode())
+        if send_command:
+            # Send command to server socket on raspberry pi
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                # s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) # Allow reuse of address
+                s.connect((HOST, PORT))
+                s.sendall(command.encode())
 
 
         if OS == 'windowsOS': 
